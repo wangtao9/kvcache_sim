@@ -27,3 +27,13 @@ def test_prefill_node_with_cache():
     node.cache[10] = BlockEntry(insert_time=0, last_access_time=0)
     assert node.used == 2
     assert node.available == 98
+
+
+def test_prefill_node_available_can_go_negative():
+    """available = capacity - used; if cache exceeds capacity, available is negative."""
+    node = PrefillNode(node_id=0, capacity=2)
+    node.cache[1] = BlockEntry(insert_time=0, last_access_time=0)
+    node.cache[2] = BlockEntry(insert_time=0, last_access_time=0)
+    node.cache[3] = BlockEntry(insert_time=0, last_access_time=0)
+    assert node.used == 3
+    assert node.available == -1
