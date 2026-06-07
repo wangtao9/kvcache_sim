@@ -2,7 +2,6 @@ from __future__ import annotations
 
 import argparse
 import json
-import sys
 from pathlib import Path
 
 from flux_router.evictor import FIFOEvictor, LRUEvictor
@@ -40,6 +39,7 @@ def print_result(result, selector_name: str, evictor_name: str,
     print("--- Results ---")
     print(f"Total blocks needed:  {result.total_blocks_needed}")
     print(f"Total blocks hit:     {result.total_blocks_hit}")
+    print(f"Total evictions:      {result.total_evictions}")
     print(f"Cache hit rate:       {result.cache_hit_rate:.2%}")
     print()
 
@@ -56,6 +56,14 @@ def print_result(result, selector_name: str, evictor_name: str,
     print(f"  1-5 blocks hit:  {low:>4} requests ({low / total:.1%})")
     print(f"  6-10 blocks hit: {mid:>4} requests ({mid / total:.1%})")
     print(f"  11+ blocks hit:  {high:>4} requests ({high / total:.1%})")
+    print()
+
+    print("Per-node statistics:")
+    for nid in sorted(result.per_node):
+        s = result.per_node[nid]
+        print(f"  Node {nid}: reqs={s.requests:>5}  hits={s.hits:>6}  "
+                f"misses={s.misses:>6}  evictions={s.evictions:>6}  "
+                f"hit_rate={s.hit_rate:.2%}")
 
 
 def main() -> None:
