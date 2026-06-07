@@ -29,14 +29,12 @@ def load_requests(path: str) -> list[Request]:
 
 def print_result(result, selector_name: str, evictor_name: str,
                  num_nodes: int, capacity: int, data_path: str) -> None:
-    print("=== Flux Router Simulation ===")
-    print(f"Data:        {data_path}")
-    print(f"Requests:    {result.total_requests}")
-    print(f"Nodes:       {num_nodes}  (capacity: {capacity} blocks each)")
-    print(f"Selector:    {selector_name}")
-    print(f"Evictor:     {evictor_name}")
-    print()
-    print("--- Results ---")
+    print("=== Flux Router Simulation Results ===")
+    print(f"Data:                 {data_path}")
+    print(f"Requests:             {result.total_requests}")
+    print(f"Nodes:                {num_nodes} (capacity: {capacity} blocks each)")
+    print(f"Selector:             {selector_name}")
+    print(f"Evictor:              {evictor_name}")
     print(f"Total blocks needed:  {result.total_blocks_needed}")
     print(f"Total blocks hit:     {result.total_blocks_hit}")
     print(f"Total evictions:      {result.total_evictions}")
@@ -44,18 +42,16 @@ def print_result(result, selector_name: str, evictor_name: str,
     print()
 
     hits = result.per_request_hits
-    if not hits:
-        return
     zero = sum(1 for h in hits if h == 0)
     low = sum(1 for h in hits if 1 <= h <= 5)
     mid = sum(1 for h in hits if 6 <= h <= 10)
     high = sum(1 for h in hits if h >= 11)
     total = len(hits)
     print("Per-request hit distribution:")
-    print(f"  0 blocks hit:    {zero:>4} requests ({zero / total:.1%})")
-    print(f"  1-5 blocks hit:  {low:>4} requests ({low / total:.1%})")
-    print(f"  6-10 blocks hit: {mid:>4} requests ({mid / total:.1%})")
-    print(f"  11+ blocks hit:  {high:>4} requests ({high / total:.1%})")
+    print(f"  0 blocks hit:    {zero:>6} requests ({zero / total:.1%})")
+    print(f"  1-5 blocks hit:  {low:>6} requests ({low / total:.1%})")
+    print(f"  6-10 blocks hit: {mid:>6} requests ({mid / total:.1%})")
+    print(f"  11+ blocks hit:  {high:>6} requests ({high / total:.1%})")
     print()
 
     print("Per-node statistics:")
@@ -68,7 +64,7 @@ def print_result(result, selector_name: str, evictor_name: str,
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Flux Router: prefill routing simulation")
-    parser.add_argument("--data", required=True, help="Path to JSONL trace file")
+    parser.add_argument("--data", type=str, default="data/trace.jsonl", help="Path to JSONL trace file")
     parser.add_argument("--nodes", type=int, default=8, help="Number of prefill nodes (default: 8)")
     parser.add_argument("--capacity", type=int, default=10000, help="Cache capacity per node in blocks (default: 10000)")
     parser.add_argument("--selector", choices=["random", "cache_aware"], default="random",

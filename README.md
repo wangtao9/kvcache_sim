@@ -24,11 +24,11 @@ python -m flux_router --data <trace.jsonl> [--nodes 8] [--capacity 10000] [--sel
 ### Example
 
 ```bash
-# Download the Mooncake trace
-curl -sL -o trace.jsonl "https://raw.githubusercontent.com/kvcache-ai/Mooncake/refs/heads/main/FAST25-release/arxiv-trace/mooncake_trace.jsonl"
+# Download the Mooncake trace if needed
+curl -sL -o data/trace.jsonl "https://raw.githubusercontent.com/kvcache-ai/Mooncake/refs/heads/main/FAST25-release/arxiv-trace/mooncake_trace.jsonl"
 
 # Run with cache-aware routing and LRU eviction
-python -m flux_router --data trace.jsonl --nodes 8 --capacity 10000 --selector cache_aware --evictor lru
+python -m flux_router --data data/trace.jsonl --nodes 8 --capacity 10000 --selector cache_aware --evictor lru
 ```
 
 ## Data Format
