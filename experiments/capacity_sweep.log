@@ -1,0 +1,1240 @@
+
+============================================================
+$ /home/wt/conda/miniconda3/envs/llm/bin/python3 -m flux_router --data /home/wt/flux_router/data/trace.jsonl --nodes 8 --capacity 500 --selector random --evictor fifo
+=== Flux Router Simulation Results ===
+Data:                 /home/wt/flux_router/data/trace.jsonl
+Requests:             23608
+Nodes:                8 (capacity: 500 blocks each)
+Selector:             random
+Evictor:              fifo
+Total blocks needed:  409356
+Total blocks hit:     131297
+Total evictions:      274009
+Cache hit rate:       32.07%
+
+Per-request hit distribution:
+  0 blocks hit:      1494 requests (6.3%)
+  1-5 blocks hit:   13344 requests (56.5%)
+  6-10 blocks hit:     23 requests (0.1%)
+  11+ blocks hit:    8747 requests (37.1%)
+
+Per-node statistics:
+  Node 0: reqs= 2920  hits= 16238  misses= 34078  evictions= 33578  hit_rate=32.27%
+  Node 1: reqs= 2999  hits= 16546  misses= 34793  evictions= 34293  hit_rate=32.23%
+  Node 2: reqs= 3093  hits= 16741  misses= 40428  evictions= 39928  hit_rate=29.28%
+  Node 3: reqs= 2874  hits= 16596  misses= 31551  evictions= 31051  hit_rate=34.47%
+  Node 4: reqs= 2883  hits= 15968  misses= 31647  evictions= 31147  hit_rate=33.54%
+  Node 5: reqs= 2870  hits= 16350  misses= 34804  evictions= 34304  hit_rate=31.96%
+  Node 6: reqs= 3043  hits= 16371  misses= 38492  evictions= 37992  hit_rate=29.84%
+  Node 7: reqs= 2926  hits= 16487  misses= 32216  evictions= 31716  hit_rate=33.85%
+
+
+
+============================================================
+$ /home/wt/conda/miniconda3/envs/llm/bin/python3 -m flux_router --data /home/wt/flux_router/data/trace.jsonl --nodes 8 --capacity 500 --selector random --evictor lru
+=== Flux Router Simulation Results ===
+Data:                 /home/wt/flux_router/data/trace.jsonl
+Requests:             23608
+Nodes:                8 (capacity: 500 blocks each)
+Selector:             random
+Evictor:              lru
+Total blocks needed:  409356
+Total blocks hit:     139753
+Total evictions:      265603
+Cache hit rate:       34.14%
+
+Per-request hit distribution:
+  0 blocks hit:        83 requests (0.4%)
+  1-5 blocks hit:   14264 requests (60.4%)
+  6-10 blocks hit:     22 requests (0.1%)
+  11+ blocks hit:    9239 requests (39.1%)
+
+Per-node statistics:
+  Node 0: reqs= 2920  hits= 17290  misses= 33028  evictions= 32528  hit_rate=34.36%
+  Node 1: reqs= 2999  hits= 17610  misses= 33729  evictions= 33229  hit_rate=34.30%
+  Node 2: reqs= 3093  hits= 17949  misses= 39223  evictions= 38723  hit_rate=31.39%
+  Node 3: reqs= 2874  hits= 17560  misses= 30587  evictions= 30087  hit_rate=36.47%
+  Node 4: reqs= 2883  hits= 16916  misses= 30699  evictions= 30199  hit_rate=35.53%
+  Node 5: reqs= 2870  hits= 17372  misses= 33782  evictions= 33282  hit_rate=33.96%
+  Node 6: reqs= 3043  hits= 17542  misses= 37322  evictions= 36822  hit_rate=31.97%
+  Node 7: reqs= 2926  hits= 17514  misses= 31233  evictions= 30733  hit_rate=35.93%
+
+
+
+============================================================
+$ /home/wt/conda/miniconda3/envs/llm/bin/python3 -m flux_router --data /home/wt/flux_router/data/trace.jsonl --nodes 8 --capacity 500 --selector cache_aware --evictor fifo
+=== Flux Router Simulation Results ===
+Data:                 /home/wt/flux_router/data/trace.jsonl
+Requests:             23608
+Nodes:                8 (capacity: 500 blocks each)
+Selector:             cache_aware
+Evictor:              fifo
+Total blocks needed:  409356
+Total blocks hit:     130130
+Total evictions:      275226
+Cache hit rate:       31.79%
+
+Per-request hit distribution:
+  0 blocks hit:      1478 requests (6.3%)
+  1-5 blocks hit:   13411 requests (56.8%)
+  6-10 blocks hit:      5 requests (0.0%)
+  11+ blocks hit:    8714 requests (36.9%)
+
+Per-node statistics:
+  Node 0: reqs=23284  hits=128262  misses=275104  evictions=274604  hit_rate=31.80%
+  Node 1: reqs=  156  hits=  1531  misses=   778  evictions=   278  hit_rate=66.31%
+  Node 2: reqs=   70  hits=   244  misses=   615  evictions=   115  hit_rate=28.41%
+  Node 3: reqs=   24  hits=    23  misses=   502  evictions=     2  hit_rate=4.38%
+  Node 4: reqs=   23  hits=    22  misses=   516  evictions=    16  hit_rate=4.09%
+  Node 5: reqs=   17  hits=    16  misses=   509  evictions=     9  hit_rate=3.05%
+  Node 6: reqs=    8  hits=     7  misses=   700  evictions=   200  hit_rate=0.99%
+  Node 7: reqs=   26  hits=    25  misses=   502  evictions=     2  hit_rate=4.74%
+
+
+
+============================================================
+$ /home/wt/conda/miniconda3/envs/llm/bin/python3 -m flux_router --data /home/wt/flux_router/data/trace.jsonl --nodes 8 --capacity 500 --selector cache_aware --evictor lru
+=== Flux Router Simulation Results ===
+Data:                 /home/wt/flux_router/data/trace.jsonl
+Requests:             23608
+Nodes:                8 (capacity: 500 blocks each)
+Selector:             cache_aware
+Evictor:              lru
+Total blocks needed:  409356
+Total blocks hit:     139163
+Total evictions:      268666
+Cache hit rate:       34.00%
+
+Per-request hit distribution:
+  0 blocks hit:         4 requests (0.0%)
+  1-5 blocks hit:   14362 requests (60.8%)
+  6-10 blocks hit:     38 requests (0.2%)
+  11+ blocks hit:    9204 requests (39.0%)
+
+Per-node statistics:
+  Node 0: reqs=10938  hits= 11085  misses=246538  evictions=246038  hit_rate=4.30%
+  Node 1: reqs= 9203  hits=110748  misses= 16359  evictions= 15859  hit_rate=87.13%
+  Node 2: reqs= 3449  hits= 17272  misses=  7269  evictions=  6769  hit_rate=70.38%
+  Node 3: reqs=   18  hits=    58  misses=    27  evictions=     0  hit_rate=68.24%
+  Node 4: reqs=    0  hits=     0  misses=     0  evictions=     0  hit_rate=0.00%
+  Node 5: reqs=    0  hits=     0  misses=     0  evictions=     0  hit_rate=0.00%
+  Node 6: reqs=    0  hits=     0  misses=     0  evictions=     0  hit_rate=0.00%
+  Node 7: reqs=    0  hits=     0  misses=     0  evictions=     0  hit_rate=0.00%
+
+
+
+============================================================
+$ /home/wt/conda/miniconda3/envs/llm/bin/python3 -m flux_router --data /home/wt/flux_router/data/trace.jsonl --nodes 8 --capacity 1000 --selector random --evictor fifo
+=== Flux Router Simulation Results ===
+Data:                 /home/wt/flux_router/data/trace.jsonl
+Requests:             23608
+Nodes:                8 (capacity: 1000 blocks each)
+Selector:             random
+Evictor:              fifo
+Total blocks needed:  409356
+Total blocks hit:     139063
+Total evictions:      262248
+Cache hit rate:       33.97%
+
+Per-request hit distribution:
+  0 blocks hit:       787 requests (3.3%)
+  1-5 blocks hit:   13673 requests (57.9%)
+  6-10 blocks hit:     57 requests (0.2%)
+  11+ blocks hit:    9091 requests (38.5%)
+
+Per-node statistics:
+  Node 0: reqs= 2920  hits= 17182  misses= 33136  evictions= 32136  hit_rate=34.15%
+  Node 1: reqs= 2999  hits= 17434  misses= 33897  evictions= 32897  hit_rate=33.96%
+  Node 2: reqs= 3093  hits= 18107  misses= 39062  evictions= 38062  hit_rate=31.67%
+  Node 3: reqs= 2874  hits= 17597  misses= 30548  evictions= 29548  hit_rate=36.55%
+  Node 4: reqs= 2883  hits= 16773  misses= 30832  evictions= 29832  hit_rate=35.23%
+  Node 5: reqs= 2870  hits= 17386  misses= 33759  evictions= 32759  hit_rate=33.99%
+  Node 6: reqs= 3043  hits= 17270  misses= 37594  evictions= 36594  hit_rate=31.48%
+  Node 7: reqs= 2926  hits= 17314  misses= 31420  evictions= 30420  hit_rate=35.53%
+
+
+
+============================================================
+$ /home/wt/conda/miniconda3/envs/llm/bin/python3 -m flux_router --data /home/wt/flux_router/data/trace.jsonl --nodes 8 --capacity 1000 --selector random --evictor lru
+=== Flux Router Simulation Results ===
+Data:                 /home/wt/flux_router/data/trace.jsonl
+Requests:             23608
+Nodes:                8 (capacity: 1000 blocks each)
+Selector:             random
+Evictor:              lru
+Total blocks needed:  409356
+Total blocks hit:     143560
+Total evictions:      257796
+Cache hit rate:       35.07%
+
+Per-request hit distribution:
+  0 blocks hit:        42 requests (0.2%)
+  1-5 blocks hit:   14161 requests (60.0%)
+  6-10 blocks hit:     61 requests (0.3%)
+  11+ blocks hit:    9344 requests (39.6%)
+
+Per-node statistics:
+  Node 0: reqs= 2920  hits= 17739  misses= 32579  evictions= 31579  hit_rate=35.25%
+  Node 1: reqs= 2999  hits= 18002  misses= 33337  evictions= 32337  hit_rate=35.06%
+  Node 2: reqs= 3093  hits= 18749  misses= 38423  evictions= 37423  hit_rate=32.79%
+  Node 3: reqs= 2874  hits= 18115  misses= 30032  evictions= 29032  hit_rate=37.62%
+  Node 4: reqs= 2883  hits= 17307  misses= 30308  evictions= 29308  hit_rate=36.35%
+  Node 5: reqs= 2870  hits= 17936  misses= 33218  evictions= 32218  hit_rate=35.06%
+  Node 6: reqs= 3043  hits= 17855  misses= 37009  evictions= 36009  hit_rate=32.54%
+  Node 7: reqs= 2926  hits= 17857  misses= 30890  evictions= 29890  hit_rate=36.63%
+
+
+
+============================================================
+$ /home/wt/conda/miniconda3/envs/llm/bin/python3 -m flux_router --data /home/wt/flux_router/data/trace.jsonl --nodes 8 --capacity 1000 --selector cache_aware --evictor fifo
+=== Flux Router Simulation Results ===
+Data:                 /home/wt/flux_router/data/trace.jsonl
+Requests:             23608
+Nodes:                8 (capacity: 1000 blocks each)
+Selector:             cache_aware
+Evictor:              fifo
+Total blocks needed:  409356
+Total blocks hit:     134832
+Total evictions:      266500
+Cache hit rate:       32.94%
+
+Per-request hit distribution:
+  0 blocks hit:       774 requests (3.3%)
+  1-5 blocks hit:   13847 requests (58.7%)
+  6-10 blocks hit:     14 requests (0.1%)
+  11+ blocks hit:    8973 requests (38.0%)
+
+Per-node statistics:
+  Node 0: reqs=23038  hits=131513  misses=266664  evictions=265664  hit_rate=33.03%
+  Node 1: reqs=  261  hits=  2692  misses=  1461  evictions=   461  hit_rate=64.82%
+  Node 2: reqs=  125  hits=   448  misses=  1274  evictions=   274  hit_rate=26.02%
+  Node 3: reqs=   40  hits=    39  misses=  1024  evictions=    24  hit_rate=3.67%
+  Node 4: reqs=   30  hits=    29  misses=  1008  evictions=     8  hit_rate=2.80%
+  Node 5: reqs=   51  hits=    50  misses=  1013  evictions=    13  hit_rate=4.70%
+  Node 6: reqs=   31  hits=    30  misses=  1013  evictions=    13  hit_rate=2.88%
+  Node 7: reqs=   32  hits=    31  misses=  1043  evictions=    43  hit_rate=2.89%
+
+
+
+============================================================
+$ /home/wt/conda/miniconda3/envs/llm/bin/python3 -m flux_router --data /home/wt/flux_router/data/trace.jsonl --nodes 8 --capacity 1000 --selector cache_aware --evictor lru
+=== Flux Router Simulation Results ===
+Data:                 /home/wt/flux_router/data/trace.jsonl
+Requests:             23608
+Nodes:                8 (capacity: 1000 blocks each)
+Selector:             cache_aware
+Evictor:              lru
+Total blocks needed:  409356
+Total blocks hit:     140207
+Total evictions:      266122
+Cache hit rate:       34.25%
+
+Per-request hit distribution:
+  0 blocks hit:         4 requests (0.0%)
+  1-5 blocks hit:   14289 requests (60.5%)
+  6-10 blocks hit:     81 requests (0.3%)
+  11+ blocks hit:    9234 requests (39.1%)
+
+Per-node statistics:
+  Node 0: reqs=10938  hits= 11998  misses=245625  evictions=244625  hit_rate=4.66%
+  Node 1: reqs= 9203  hits=110843  misses= 16264  evictions= 15264  hit_rate=87.20%
+  Node 2: reqs= 3449  hits= 17308  misses=  7233  evictions=  6233  hit_rate=70.53%
+  Node 3: reqs=   18  hits=    58  misses=    27  evictions=     0  hit_rate=68.24%
+  Node 4: reqs=    0  hits=     0  misses=     0  evictions=     0  hit_rate=0.00%
+  Node 5: reqs=    0  hits=     0  misses=     0  evictions=     0  hit_rate=0.00%
+  Node 6: reqs=    0  hits=     0  misses=     0  evictions=     0  hit_rate=0.00%
+  Node 7: reqs=    0  hits=     0  misses=     0  evictions=     0  hit_rate=0.00%
+
+
+
+============================================================
+$ /home/wt/conda/miniconda3/envs/llm/bin/python3 -m flux_router --data /home/wt/flux_router/data/trace.jsonl --nodes 8 --capacity 2000 --selector random --evictor fifo
+=== Flux Router Simulation Results ===
+Data:                 /home/wt/flux_router/data/trace.jsonl
+Requests:             23608
+Nodes:                8 (capacity: 2000 blocks each)
+Selector:             random
+Evictor:              fifo
+Total blocks needed:  409356
+Total blocks hit:     146433
+Total evictions:      246790
+Cache hit rate:       35.77%
+
+Per-request hit distribution:
+  0 blocks hit:       409 requests (1.7%)
+  1-5 blocks hit:   13747 requests (58.2%)
+  6-10 blocks hit:    106 requests (0.4%)
+  11+ blocks hit:    9346 requests (39.6%)
+
+Per-node statistics:
+  Node 0: reqs= 2920  hits= 18062  misses= 32236  evictions= 30236  hit_rate=35.91%
+  Node 1: reqs= 2999  hits= 18304  misses= 33019  evictions= 31019  hit_rate=35.66%
+  Node 2: reqs= 3093  hits= 19269  misses= 37903  evictions= 35903  hit_rate=33.70%
+  Node 3: reqs= 2874  hits= 18153  misses= 29981  evictions= 27981  hit_rate=37.71%
+  Node 4: reqs= 2883  hits= 17577  misses= 30004  evictions= 28004  hit_rate=36.94%
+  Node 5: reqs= 2870  hits= 18472  misses= 32682  evictions= 30682  hit_rate=36.11%
+  Node 6: reqs= 3043  hits= 18093  misses= 36748  evictions= 34748  hit_rate=32.99%
+  Node 7: reqs= 2926  hits= 18503  misses= 30217  evictions= 28217  hit_rate=37.98%
+
+
+
+============================================================
+$ /home/wt/conda/miniconda3/envs/llm/bin/python3 -m flux_router --data /home/wt/flux_router/data/trace.jsonl --nodes 8 --capacity 2000 --selector random --evictor lru
+=== Flux Router Simulation Results ===
+Data:                 /home/wt/flux_router/data/trace.jsonl
+Requests:             23608
+Nodes:                8 (capacity: 2000 blocks each)
+Selector:             random
+Evictor:              lru
+Total blocks needed:  409356
+Total blocks hit:     148901
+Total evictions:      244455
+Cache hit rate:       36.37%
+
+Per-request hit distribution:
+  0 blocks hit:        40 requests (0.2%)
+  1-5 blocks hit:   13978 requests (59.2%)
+  6-10 blocks hit:    110 requests (0.5%)
+  11+ blocks hit:    9480 requests (40.2%)
+
+Per-node statistics:
+  Node 0: reqs= 2920  hits= 18384  misses= 31934  evictions= 29934  hit_rate=36.54%
+  Node 1: reqs= 2999  hits= 18604  misses= 32735  evictions= 30735  hit_rate=36.24%
+  Node 2: reqs= 3093  hits= 19526  misses= 37646  evictions= 35646  hit_rate=34.15%
+  Node 3: reqs= 2874  hits= 18433  misses= 29714  evictions= 27714  hit_rate=38.28%
+  Node 4: reqs= 2883  hits= 17837  misses= 29778  evictions= 27778  hit_rate=37.46%
+  Node 5: reqs= 2870  hits= 18746  misses= 32408  evictions= 30408  hit_rate=36.65%
+  Node 6: reqs= 3043  hits= 18461  misses= 36403  evictions= 34403  hit_rate=33.65%
+  Node 7: reqs= 2926  hits= 18910  misses= 29837  evictions= 27837  hit_rate=38.79%
+
+
+
+============================================================
+$ /home/wt/conda/miniconda3/envs/llm/bin/python3 -m flux_router --data /home/wt/flux_router/data/trace.jsonl --nodes 8 --capacity 2000 --selector cache_aware --evictor fifo
+=== Flux Router Simulation Results ===
+Data:                 /home/wt/flux_router/data/trace.jsonl
+Requests:             23608
+Nodes:                8 (capacity: 2000 blocks each)
+Selector:             cache_aware
+Evictor:              fifo
+Total blocks needed:  409356
+Total blocks hit:     139747
+Total evictions:      253595
+Cache hit rate:       34.14%
+
+Per-request hit distribution:
+  0 blocks hit:       392 requests (1.7%)
+  1-5 blocks hit:   14011 requests (59.3%)
+  6-10 blocks hit:     30 requests (0.1%)
+  11+ blocks hit:    9175 requests (38.9%)
+
+Per-node statistics:
+  Node 0: reqs=22390  hits=132466  misses=254244  evictions=252244  hit_rate=34.25%
+  Node 1: reqs=  598  hits=  5932  misses=  2784  evictions=   784  hit_rate=68.06%
+  Node 2: reqs=  265  hits=   989  misses=  2337  evictions=   337  hit_rate=29.74%
+  Node 3: reqs=   81  hits=    80  misses=  2020  evictions=    20  hit_rate=3.81%
+  Node 4: reqs=   63  hits=    62  misses=  2055  evictions=    55  hit_rate=2.93%
+  Node 5: reqs=   74  hits=    83  misses=  2117  evictions=   117  hit_rate=3.77%
+  Node 6: reqs=   75  hits=    74  misses=  2026  evictions=    26  hit_rate=3.52%
+  Node 7: reqs=   62  hits=    61  misses=  2012  evictions=    12  hit_rate=2.94%
+
+
+
+============================================================
+$ /home/wt/conda/miniconda3/envs/llm/bin/python3 -m flux_router --data /home/wt/flux_router/data/trace.jsonl --nodes 8 --capacity 2000 --selector cache_aware --evictor lru
+=== Flux Router Simulation Results ===
+Data:                 /home/wt/flux_router/data/trace.jsonl
+Requests:             23608
+Nodes:                8 (capacity: 2000 blocks each)
+Selector:             cache_aware
+Evictor:              lru
+Total blocks needed:  409356
+Total blocks hit:     143389
+Total evictions:      259940
+Cache hit rate:       35.03%
+
+Per-request hit distribution:
+  0 blocks hit:         4 requests (0.0%)
+  1-5 blocks hit:   14142 requests (59.9%)
+  6-10 blocks hit:    138 requests (0.6%)
+  11+ blocks hit:    9324 requests (39.5%)
+
+Per-node statistics:
+  Node 0: reqs=10938  hits= 15070  misses=242553  evictions=240553  hit_rate=5.85%
+  Node 1: reqs= 9203  hits=110919  misses= 16188  evictions= 14188  hit_rate=87.26%
+  Node 2: reqs= 3449  hits= 17342  misses=  7199  evictions=  5199  hit_rate=70.67%
+  Node 3: reqs=   18  hits=    58  misses=    27  evictions=     0  hit_rate=68.24%
+  Node 4: reqs=    0  hits=     0  misses=     0  evictions=     0  hit_rate=0.00%
+  Node 5: reqs=    0  hits=     0  misses=     0  evictions=     0  hit_rate=0.00%
+  Node 6: reqs=    0  hits=     0  misses=     0  evictions=     0  hit_rate=0.00%
+  Node 7: reqs=    0  hits=     0  misses=     0  evictions=     0  hit_rate=0.00%
+
+
+
+============================================================
+$ /home/wt/conda/miniconda3/envs/llm/bin/python3 -m flux_router --data /home/wt/flux_router/data/trace.jsonl --nodes 8 --capacity 4000 --selector random --evictor fifo
+=== Flux Router Simulation Results ===
+Data:                 /home/wt/flux_router/data/trace.jsonl
+Requests:             23608
+Nodes:                8 (capacity: 4000 blocks each)
+Selector:             random
+Evictor:              fifo
+Total blocks needed:  409356
+Total blocks hit:     153183
+Total evictions:      223984
+Cache hit rate:       37.42%
+
+Per-request hit distribution:
+  0 blocks hit:       215 requests (0.9%)
+  1-5 blocks hit:   13682 requests (58.0%)
+  6-10 blocks hit:    152 requests (0.6%)
+  11+ blocks hit:    9559 requests (40.5%)
+
+Per-node statistics:
+  Node 0: reqs= 2920  hits= 19166  misses= 31113  evictions= 27113  hit_rate=38.12%
+  Node 1: reqs= 2999  hits= 18958  misses= 32344  evictions= 28344  hit_rate=36.95%
+  Node 2: reqs= 3093  hits= 20084  misses= 37083  evictions= 33083  hit_rate=35.13%
+  Node 3: reqs= 2874  hits= 18907  misses= 29234  evictions= 25234  hit_rate=39.27%
+  Node 4: reqs= 2883  hits= 18154  misses= 29458  evictions= 25458  hit_rate=38.13%
+  Node 5: reqs= 2870  hits= 19334  misses= 31795  evictions= 27795  hit_rate=37.81%
+  Node 6: reqs= 3043  hits= 19183  misses= 35634  evictions= 31634  hit_rate=34.99%
+  Node 7: reqs= 2926  hits= 19397  misses= 29323  evictions= 25323  hit_rate=39.81%
+
+
+
+============================================================
+$ /home/wt/conda/miniconda3/envs/llm/bin/python3 -m flux_router --data /home/wt/flux_router/data/trace.jsonl --nodes 8 --capacity 4000 --selector random --evictor lru
+=== Flux Router Simulation Results ===
+Data:                 /home/wt/flux_router/data/trace.jsonl
+Requests:             23608
+Nodes:                8 (capacity: 4000 blocks each)
+Selector:             random
+Evictor:              lru
+Total blocks needed:  409356
+Total blocks hit:     155412
+Total evictions:      221944
+Cache hit rate:       37.96%
+
+Per-request hit distribution:
+  0 blocks hit:        38 requests (0.2%)
+  1-5 blocks hit:   13769 requests (58.3%)
+  6-10 blocks hit:    156 requests (0.7%)
+  11+ blocks hit:    9645 requests (40.9%)
+
+Per-node statistics:
+  Node 0: reqs= 2920  hits= 19474  misses= 30844  evictions= 26844  hit_rate=38.70%
+  Node 1: reqs= 2999  hits= 19334  misses= 32005  evictions= 28005  hit_rate=37.66%
+  Node 2: reqs= 3093  hits= 20509  misses= 36663  evictions= 32663  hit_rate=35.87%
+  Node 3: reqs= 2874  hits= 19075  misses= 29072  evictions= 25072  hit_rate=39.62%
+  Node 4: reqs= 2883  hits= 18365  misses= 29250  evictions= 25250  hit_rate=38.57%
+  Node 5: reqs= 2870  hits= 19618  misses= 31536  evictions= 27536  hit_rate=38.35%
+  Node 6: reqs= 3043  hits= 19441  misses= 35423  evictions= 31423  hit_rate=35.43%
+  Node 7: reqs= 2926  hits= 19596  misses= 29151  evictions= 25151  hit_rate=40.20%
+
+
+
+============================================================
+$ /home/wt/conda/miniconda3/envs/llm/bin/python3 -m flux_router --data /home/wt/flux_router/data/trace.jsonl --nodes 8 --capacity 4000 --selector cache_aware --evictor fifo
+=== Flux Router Simulation Results ===
+Data:                 /home/wt/flux_router/data/trace.jsonl
+Requests:             23608
+Nodes:                8 (capacity: 4000 blocks each)
+Selector:             cache_aware
+Evictor:              fifo
+Total blocks needed:  409356
+Total blocks hit:     148813
+Total evictions:      228410
+Cache hit rate:       36.35%
+
+Per-request hit distribution:
+  0 blocks hit:       194 requests (0.8%)
+  1-5 blocks hit:   13819 requests (58.5%)
+  6-10 blocks hit:    129 requests (0.5%)
+  11+ blocks hit:    9466 requests (40.1%)
+
+Per-node statistics:
+  Node 0: reqs=21163  hits=133172  misses=230012  evictions=226012  hit_rate=36.67%
+  Node 1: reqs= 1181  hits= 12431  misses=  5661  evictions=  1661  hit_rate=68.71%
+  Node 2: reqs=  495  hits=  1999  misses=  4699  evictions=   699  hit_rate=29.84%
+  Node 3: reqs=  137  hits=   162  misses=  4003  evictions=     3  hit_rate=3.89%
+  Node 4: reqs=  150  hits=   370  misses=  4010  evictions=    10  hit_rate=8.45%
+  Node 5: reqs=  181  hits=   244  misses=  4003  evictions=     3  hit_rate=5.75%
+  Node 6: reqs=  145  hits=   209  misses=  4013  evictions=    13  hit_rate=4.95%
+  Node 7: reqs=  156  hits=   226  misses=  4009  evictions=     9  hit_rate=5.34%
+
+
+
+============================================================
+$ /home/wt/conda/miniconda3/envs/llm/bin/python3 -m flux_router --data /home/wt/flux_router/data/trace.jsonl --nodes 8 --capacity 4000 --selector cache_aware --evictor lru
+=== Flux Router Simulation Results ===
+Data:                 /home/wt/flux_router/data/trace.jsonl
+Requests:             23608
+Nodes:                8 (capacity: 4000 blocks each)
+Selector:             cache_aware
+Evictor:              lru
+Total blocks needed:  409356
+Total blocks hit:     155354
+Total evictions:      241975
+Cache hit rate:       37.95%
+
+Per-request hit distribution:
+  0 blocks hit:         4 requests (0.0%)
+  1-5 blocks hit:   13654 requests (57.8%)
+  6-10 blocks hit:    281 requests (1.2%)
+  11+ blocks hit:    9669 requests (41.0%)
+
+Per-node statistics:
+  Node 0: reqs=10938  hits= 26979  misses=230644  evictions=226644  hit_rate=10.47%
+  Node 1: reqs= 9203  hits=110961  misses= 16146  evictions= 12146  hit_rate=87.30%
+  Node 2: reqs= 3449  hits= 17356  misses=  7185  evictions=  3185  hit_rate=70.72%
+  Node 3: reqs=   18  hits=    58  misses=    27  evictions=     0  hit_rate=68.24%
+  Node 4: reqs=    0  hits=     0  misses=     0  evictions=     0  hit_rate=0.00%
+  Node 5: reqs=    0  hits=     0  misses=     0  evictions=     0  hit_rate=0.00%
+  Node 6: reqs=    0  hits=     0  misses=     0  evictions=     0  hit_rate=0.00%
+  Node 7: reqs=    0  hits=     0  misses=     0  evictions=     0  hit_rate=0.00%
+
+
+
+============================================================
+$ /home/wt/conda/miniconda3/envs/llm/bin/python3 -m flux_router --data /home/wt/flux_router/data/trace.jsonl --nodes 8 --capacity 8000 --selector random --evictor fifo
+=== Flux Router Simulation Results ===
+Data:                 /home/wt/flux_router/data/trace.jsonl
+Requests:             23608
+Nodes:                8 (capacity: 8000 blocks each)
+Selector:             random
+Evictor:              fifo
+Total blocks needed:  409356
+Total blocks hit:     159453
+Total evictions:      185717
+Cache hit rate:       38.95%
+
+Per-request hit distribution:
+  0 blocks hit:       115 requests (0.5%)
+  1-5 blocks hit:   13572 requests (57.5%)
+  6-10 blocks hit:    190 requests (0.8%)
+  11+ blocks hit:    9731 requests (41.2%)
+
+Per-node statistics:
+  Node 0: reqs= 2920  hits= 20039  misses= 30262  evictions= 22262  hit_rate=39.84%
+  Node 1: reqs= 2999  hits= 19891  misses= 31428  evictions= 23428  hit_rate=38.76%
+  Node 2: reqs= 3093  hits= 21034  misses= 36111  evictions= 28111  hit_rate=36.81%
+  Node 3: reqs= 2874  hits= 19414  misses= 28696  evictions= 20696  hit_rate=40.35%
+  Node 4: reqs= 2883  hits= 18688  misses= 28898  evictions= 20898  hit_rate=39.27%
+  Node 5: reqs= 2870  hits= 20013  misses= 31121  evictions= 23121  hit_rate=39.14%
+  Node 6: reqs= 3043  hits= 20278  misses= 34576  evictions= 26576  hit_rate=36.97%
+  Node 7: reqs= 2926  hits= 20096  misses= 28625  evictions= 20625  hit_rate=41.25%
+
+
+
+============================================================
+$ /home/wt/conda/miniconda3/envs/llm/bin/python3 -m flux_router --data /home/wt/flux_router/data/trace.jsonl --nodes 8 --capacity 8000 --selector random --evictor lru
+=== Flux Router Simulation Results ===
+Data:                 /home/wt/flux_router/data/trace.jsonl
+Requests:             23608
+Nodes:                8 (capacity: 8000 blocks each)
+Selector:             random
+Evictor:              lru
+Total blocks needed:  409356
+Total blocks hit:     161196
+Total evictions:      184160
+Cache hit rate:       39.38%
+
+Per-request hit distribution:
+  0 blocks hit:        37 requests (0.2%)
+  1-5 blocks hit:   13587 requests (57.6%)
+  6-10 blocks hit:    199 requests (0.8%)
+  11+ blocks hit:    9785 requests (41.4%)
+
+Per-node statistics:
+  Node 0: reqs= 2920  hits= 20337  misses= 29981  evictions= 21981  hit_rate=40.42%
+  Node 1: reqs= 2999  hits= 20187  misses= 31152  evictions= 23152  hit_rate=39.32%
+  Node 2: reqs= 3093  hits= 21311  misses= 35861  evictions= 27861  hit_rate=37.28%
+  Node 3: reqs= 2874  hits= 19552  misses= 28595  evictions= 20595  hit_rate=40.61%
+  Node 4: reqs= 2883  hits= 18824  misses= 28791  evictions= 20791  hit_rate=39.53%
+  Node 5: reqs= 2870  hits= 20237  misses= 30917  evictions= 22917  hit_rate=39.56%
+  Node 6: reqs= 3043  hits= 20489  misses= 34375  evictions= 26375  hit_rate=37.35%
+  Node 7: reqs= 2926  hits= 20259  misses= 28488  evictions= 20488  hit_rate=41.56%
+
+
+
+============================================================
+$ /home/wt/conda/miniconda3/envs/llm/bin/python3 -m flux_router --data /home/wt/flux_router/data/trace.jsonl --nodes 8 --capacity 8000 --selector cache_aware --evictor fifo
+=== Flux Router Simulation Results ===
+Data:                 /home/wt/flux_router/data/trace.jsonl
+Requests:             23608
+Nodes:                8 (capacity: 8000 blocks each)
+Selector:             cache_aware
+Evictor:              fifo
+Total blocks needed:  409356
+Total blocks hit:     168570
+Total evictions:      175966
+Cache hit rate:       41.18%
+
+Per-request hit distribution:
+  0 blocks hit:        89 requests (0.4%)
+  1-5 blocks hit:   13144 requests (55.7%)
+  6-10 blocks hit:    350 requests (1.5%)
+  11+ blocks hit:   10025 requests (42.5%)
+
+Per-node statistics:
+  Node 0: reqs=18163  hits=130771  misses=178594  evictions=170594  hit_rate=42.27%
+  Node 1: reqs= 2635  hits= 27740  misses= 11682  evictions=  3682  hit_rate=70.37%
+  Node 2: reqs= 1101  hits=  4624  misses=  9628  evictions=  1628  hit_rate=32.44%
+  Node 3: reqs=  349  hits=  1376  misses=  8016  evictions=    16  hit_rate=14.65%
+  Node 4: reqs=  325  hits=   748  misses=  8013  evictions=    13  hit_rate=8.54%
+  Node 5: reqs=  317  hits=  1272  misses=  8011  evictions=    11  hit_rate=13.70%
+  Node 6: reqs=  403  hits=  1077  misses=  8018  evictions=    18  hit_rate=11.84%
+  Node 7: reqs=  315  hits=   962  misses=  8004  evictions=     4  hit_rate=10.73%
+
+
+
+============================================================
+$ /home/wt/conda/miniconda3/envs/llm/bin/python3 -m flux_router --data /home/wt/flux_router/data/trace.jsonl --nodes 8 --capacity 8000 --selector cache_aware --evictor lru
+=== Flux Router Simulation Results ===
+Data:                 /home/wt/flux_router/data/trace.jsonl
+Requests:             23608
+Nodes:                8 (capacity: 8000 blocks each)
+Selector:             cache_aware
+Evictor:              lru
+Total blocks needed:  409356
+Total blocks hit:     183263
+Total evictions:      202881
+Cache hit rate:       44.77%
+
+Per-request hit distribution:
+  0 blocks hit:         4 requests (0.0%)
+  1-5 blocks hit:   12633 requests (53.5%)
+  6-10 blocks hit:    555 requests (2.4%)
+  11+ blocks hit:   10416 requests (44.1%)
+
+Per-node statistics:
+  Node 0: reqs=10938  hits= 54888  misses=202735  evictions=194735  hit_rate=21.31%
+  Node 1: reqs= 9203  hits=110961  misses= 16146  evictions=  8146  hit_rate=87.30%
+  Node 2: reqs= 3449  hits= 17356  misses=  7185  evictions=     0  hit_rate=70.72%
+  Node 3: reqs=   18  hits=    58  misses=    27  evictions=     0  hit_rate=68.24%
+  Node 4: reqs=    0  hits=     0  misses=     0  evictions=     0  hit_rate=0.00%
+  Node 5: reqs=    0  hits=     0  misses=     0  evictions=     0  hit_rate=0.00%
+  Node 6: reqs=    0  hits=     0  misses=     0  evictions=     0  hit_rate=0.00%
+  Node 7: reqs=    0  hits=     0  misses=     0  evictions=     0  hit_rate=0.00%
+
+
+
+============================================================
+$ /home/wt/conda/miniconda3/envs/llm/bin/python3 -m flux_router --data /home/wt/flux_router/data/trace.jsonl --nodes 8 --capacity 16000 --selector random --evictor fifo
+=== Flux Router Simulation Results ===
+Data:                 /home/wt/flux_router/data/trace.jsonl
+Requests:             23608
+Nodes:                8 (capacity: 16000 blocks each)
+Selector:             random
+Evictor:              fifo
+Total blocks needed:  409356
+Total blocks hit:     162891
+Total evictions:      118303
+Cache hit rate:       39.79%
+
+Per-request hit distribution:
+  0 blocks hit:        63 requests (0.3%)
+  1-5 blocks hit:   13513 requests (57.2%)
+  6-10 blocks hit:    216 requests (0.9%)
+  11+ blocks hit:    9816 requests (41.6%)
+
+Per-node statistics:
+  Node 0: reqs= 2920  hits= 20425  misses= 29889  evictions= 13889  hit_rate=40.60%
+  Node 1: reqs= 2999  hits= 20509  misses= 30808  evictions= 14808  hit_rate=39.97%
+  Node 2: reqs= 3093  hits= 21670  misses= 35485  evictions= 19485  hit_rate=37.91%
+  Node 3: reqs= 2874  hits= 19619  misses= 28463  evictions= 12463  hit_rate=40.80%
+  Node 4: reqs= 2883  hits= 18959  misses= 28645  evictions= 12645  hit_rate=39.83%
+  Node 5: reqs= 2870  hits= 20508  misses= 30646  evictions= 14646  hit_rate=40.09%
+  Node 6: reqs= 3043  hits= 20864  misses= 33983  evictions= 17983  hit_rate=38.04%
+  Node 7: reqs= 2926  hits= 20337  misses= 28384  evictions= 12384  hit_rate=41.74%
+
+
+
+============================================================
+$ /home/wt/conda/miniconda3/envs/llm/bin/python3 -m flux_router --data /home/wt/flux_router/data/trace.jsonl --nodes 8 --capacity 16000 --selector random --evictor lru
+=== Flux Router Simulation Results ===
+Data:                 /home/wt/flux_router/data/trace.jsonl
+Requests:             23608
+Nodes:                8 (capacity: 16000 blocks each)
+Selector:             random
+Evictor:              lru
+Total blocks needed:  409356
+Total blocks hit:     163871
+Total evictions:      117485
+Cache hit rate:       40.03%
+
+Per-request hit distribution:
+  0 blocks hit:        34 requests (0.1%)
+  1-5 blocks hit:   13514 requests (57.2%)
+  6-10 blocks hit:    216 requests (0.9%)
+  11+ blocks hit:    9844 requests (41.7%)
+
+Per-node statistics:
+  Node 0: reqs= 2920  hits= 20461  misses= 29857  evictions= 13857  hit_rate=40.66%
+  Node 1: reqs= 2999  hits= 20586  misses= 30753  evictions= 14753  hit_rate=40.10%
+  Node 2: reqs= 3093  hits= 21794  misses= 35378  evictions= 19378  hit_rate=38.12%
+  Node 3: reqs= 2874  hits= 19911  misses= 28236  evictions= 12236  hit_rate=41.35%
+  Node 4: reqs= 2883  hits= 19018  misses= 28597  evictions= 12597  hit_rate=39.94%
+  Node 5: reqs= 2870  hits= 20526  misses= 30628  evictions= 14628  hit_rate=40.13%
+  Node 6: reqs= 3043  hits= 21140  misses= 33724  evictions= 17724  hit_rate=38.53%
+  Node 7: reqs= 2926  hits= 20435  misses= 28312  evictions= 12312  hit_rate=41.92%
+
+
+
+============================================================
+$ /home/wt/conda/miniconda3/envs/llm/bin/python3 -m flux_router --data /home/wt/flux_router/data/trace.jsonl --nodes 8 --capacity 16000 --selector cache_aware --evictor fifo
+=== Flux Router Simulation Results ===
+Data:                 /home/wt/flux_router/data/trace.jsonl
+Requests:             23608
+Nodes:                8 (capacity: 16000 blocks each)
+Selector:             cache_aware
+Evictor:              fifo
+Total blocks needed:  409356
+Total blocks hit:     185920
+Total evictions:      94568
+Cache hit rate:       45.42%
+
+Per-request hit distribution:
+  0 blocks hit:        31 requests (0.1%)
+  1-5 blocks hit:   12542 requests (53.1%)
+  6-10 blocks hit:    541 requests (2.3%)
+  11+ blocks hit:   10494 requests (44.5%)
+
+Per-node statistics:
+  Node 0: reqs=10671  hits= 85574  misses= 98460  evictions= 82460  hit_rate=46.50%
+  Node 1: reqs= 6256  hits= 66435  misses= 24591  evictions=  8591  hit_rate=72.98%
+  Node 2: reqs= 2707  hits= 13661  misses= 19422  evictions=  3422  hit_rate=41.29%
+  Node 3: reqs=  751  hits=  5119  misses= 16034  evictions=    34  hit_rate=24.20%
+  Node 4: reqs=  831  hits=  3339  misses= 16053  evictions=    53  hit_rate=17.22%
+  Node 5: reqs=  803  hits=  4171  misses= 16002  evictions=     2  hit_rate=20.68%
+  Node 6: reqs=  745  hits=  3867  misses= 16002  evictions=     2  hit_rate=19.46%
+  Node 7: reqs=  844  hits=  3754  misses= 16004  evictions=     4  hit_rate=19.00%
+
+
+
+============================================================
+$ /home/wt/conda/miniconda3/envs/llm/bin/python3 -m flux_router --data /home/wt/flux_router/data/trace.jsonl --nodes 8 --capacity 16000 --selector cache_aware --evictor lru
+=== Flux Router Simulation Results ===
+Data:                 /home/wt/flux_router/data/trace.jsonl
+Requests:             23608
+Nodes:                8 (capacity: 16000 blocks each)
+Selector:             cache_aware
+Evictor:              lru
+Total blocks needed:  409356
+Total blocks hit:     207241
+Total evictions:      162903
+Cache hit rate:       50.63%
+
+Per-request hit distribution:
+  0 blocks hit:         4 requests (0.0%)
+  1-5 blocks hit:   11765 requests (49.8%)
+  6-10 blocks hit:    779 requests (3.3%)
+  11+ blocks hit:   11060 requests (46.8%)
+
+Per-node statistics:
+  Node 0: reqs=10938  hits= 78862  misses=178761  evictions=162761  hit_rate=30.61%
+  Node 1: reqs= 9203  hits=110965  misses= 16142  evictions=   142  hit_rate=87.30%
+  Node 2: reqs= 3449  hits= 17356  misses=  7185  evictions=     0  hit_rate=70.72%
+  Node 3: reqs=   18  hits=    58  misses=    27  evictions=     0  hit_rate=68.24%
+  Node 4: reqs=    0  hits=     0  misses=     0  evictions=     0  hit_rate=0.00%
+  Node 5: reqs=    0  hits=     0  misses=     0  evictions=     0  hit_rate=0.00%
+  Node 6: reqs=    0  hits=     0  misses=     0  evictions=     0  hit_rate=0.00%
+  Node 7: reqs=    0  hits=     0  misses=     0  evictions=     0  hit_rate=0.00%
+
+
+
+============================================================
+$ /home/wt/conda/miniconda3/envs/llm/bin/python3 -m flux_router --data /home/wt/flux_router/data/trace.jsonl --nodes 8 --capacity 32000 --selector random --evictor fifo
+=== Flux Router Simulation Results ===
+Data:                 /home/wt/flux_router/data/trace.jsonl
+Requests:             23608
+Nodes:                8 (capacity: 32000 blocks each)
+Selector:             random
+Evictor:              fifo
+Total blocks needed:  409356
+Total blocks hit:     164332
+Total evictions:      4956
+Cache hit rate:       40.14%
+
+Per-request hit distribution:
+  0 blocks hit:        38 requests (0.2%)
+  1-5 blocks hit:   13500 requests (57.2%)
+  6-10 blocks hit:    218 requests (0.9%)
+  11+ blocks hit:    9852 requests (41.7%)
+
+Per-node statistics:
+  Node 0: reqs= 2920  hits= 20515  misses= 29803  evictions=     0  hit_rate=40.77%
+  Node 1: reqs= 2999  hits= 20647  misses= 30692  evictions=     0  hit_rate=40.22%
+  Node 2: reqs= 3093  hits= 21949  misses= 35223  evictions=  3223  hit_rate=38.39%
+  Node 3: reqs= 2874  hits= 19916  misses= 28231  evictions=     0  hit_rate=41.36%
+  Node 4: reqs= 2883  hits= 19105  misses= 28510  evictions=     0  hit_rate=40.12%
+  Node 5: reqs= 2870  hits= 20635  misses= 30519  evictions=     0  hit_rate=40.34%
+  Node 6: reqs= 3043  hits= 21124  misses= 33733  evictions=  1733  hit_rate=38.51%
+  Node 7: reqs= 2926  hits= 20441  misses= 28306  evictions=     0  hit_rate=41.93%
+
+
+
+============================================================
+$ /home/wt/conda/miniconda3/envs/llm/bin/python3 -m flux_router --data /home/wt/flux_router/data/trace.jsonl --nodes 8 --capacity 32000 --selector random --evictor lru
+=== Flux Router Simulation Results ===
+Data:                 /home/wt/flux_router/data/trace.jsonl
+Requests:             23608
+Nodes:                8 (capacity: 32000 blocks each)
+Selector:             random
+Evictor:              lru
+Total blocks needed:  409356
+Total blocks hit:     164375
+Total evictions:      4920
+Cache hit rate:       40.15%
+
+Per-request hit distribution:
+  0 blocks hit:        32 requests (0.1%)
+  1-5 blocks hit:   13503 requests (57.2%)
+  6-10 blocks hit:    219 requests (0.9%)
+  11+ blocks hit:    9854 requests (41.7%)
+
+Per-node statistics:
+  Node 0: reqs= 2920  hits= 20515  misses= 29803  evictions=     0  hit_rate=40.77%
+  Node 1: reqs= 2999  hits= 20647  misses= 30692  evictions=     0  hit_rate=40.22%
+  Node 2: reqs= 3093  hits= 21967  misses= 35205  evictions=  3205  hit_rate=38.42%
+  Node 3: reqs= 2874  hits= 19916  misses= 28231  evictions=     0  hit_rate=41.36%
+  Node 4: reqs= 2883  hits= 19105  misses= 28510  evictions=     0  hit_rate=40.12%
+  Node 5: reqs= 2870  hits= 20635  misses= 30519  evictions=     0  hit_rate=40.34%
+  Node 6: reqs= 3043  hits= 21149  misses= 33715  evictions=  1715  hit_rate=38.55%
+  Node 7: reqs= 2926  hits= 20441  misses= 28306  evictions=     0  hit_rate=41.93%
+
+
+
+============================================================
+$ /home/wt/conda/miniconda3/envs/llm/bin/python3 -m flux_router --data /home/wt/flux_router/data/trace.jsonl --nodes 8 --capacity 32000 --selector cache_aware --evictor fifo
+=== Flux Router Simulation Results ===
+Data:                 /home/wt/flux_router/data/trace.jsonl
+Requests:             23608
+Nodes:                8 (capacity: 32000 blocks each)
+Selector:             cache_aware
+Evictor:              fifo
+Total blocks needed:  409356
+Total blocks hit:     202768
+Total evictions:      105
+Cache hit rate:       49.53%
+
+Per-request hit distribution:
+  0 blocks hit:         9 requests (0.0%)
+  1-5 blocks hit:   11964 requests (50.7%)
+  6-10 blocks hit:    705 requests (3.0%)
+  11+ blocks hit:   10930 requests (46.3%)
+
+Per-node statistics:
+  Node 0: reqs= 1656  hits= 14104  misses= 32017  evictions=    17  hit_rate=30.58%
+  Node 1: reqs= 9203  hits=110965  misses= 16142  evictions=     0  hit_rate=87.30%
+  Node 2: reqs= 3449  hits= 17356  misses=  7185  evictions=     0  hit_rate=70.72%
+  Node 3: reqs= 1445  hits=  7879  misses= 23156  evictions=     0  hit_rate=25.39%
+  Node 4: reqs= 1773  hits= 12444  misses= 32034  evictions=    34  hit_rate=27.98%
+  Node 5: reqs= 1955  hits= 13190  misses= 32016  evictions=    16  hit_rate=29.18%
+  Node 6: reqs= 2055  hits= 12601  misses= 32037  evictions=    37  hit_rate=28.23%
+  Node 7: reqs= 2072  hits= 14229  misses= 32001  evictions=     1  hit_rate=30.78%
+
+
+
+============================================================
+$ /home/wt/conda/miniconda3/envs/llm/bin/python3 -m flux_router --data /home/wt/flux_router/data/trace.jsonl --nodes 8 --capacity 32000 --selector cache_aware --evictor lru
+=== Flux Router Simulation Results ===
+Data:                 /home/wt/flux_router/data/trace.jsonl
+Requests:             23608
+Nodes:                8 (capacity: 32000 blocks each)
+Selector:             cache_aware
+Evictor:              lru
+Total blocks needed:  409356
+Total blocks hit:     224397
+Total evictions:      129605
+Cache hit rate:       54.82%
+
+Per-request hit distribution:
+  0 blocks hit:         4 requests (0.0%)
+  1-5 blocks hit:   11213 requests (47.5%)
+  6-10 blocks hit:    906 requests (3.8%)
+  11+ blocks hit:   11485 requests (48.6%)
+
+Per-node statistics:
+  Node 0: reqs=10938  hits= 96018  misses=161605  evictions=129605  hit_rate=37.27%
+  Node 1: reqs= 9203  hits=110965  misses= 16142  evictions=     0  hit_rate=87.30%
+  Node 2: reqs= 3449  hits= 17356  misses=  7185  evictions=     0  hit_rate=70.72%
+  Node 3: reqs=   18  hits=    58  misses=    27  evictions=     0  hit_rate=68.24%
+  Node 4: reqs=    0  hits=     0  misses=     0  evictions=     0  hit_rate=0.00%
+  Node 5: reqs=    0  hits=     0  misses=     0  evictions=     0  hit_rate=0.00%
+  Node 6: reqs=    0  hits=     0  misses=     0  evictions=     0  hit_rate=0.00%
+  Node 7: reqs=    0  hits=     0  misses=     0  evictions=     0  hit_rate=0.00%
+
+
+
+============================================================
+$ /home/wt/conda/miniconda3/envs/llm/bin/python3 -m flux_router --data /home/wt/flux_router/data/trace.jsonl --nodes 8 --capacity 64000 --selector random --evictor fifo
+=== Flux Router Simulation Results ===
+Data:                 /home/wt/flux_router/data/trace.jsonl
+Requests:             23608
+Nodes:                8 (capacity: 64000 blocks each)
+Selector:             random
+Evictor:              fifo
+Total blocks needed:  409356
+Total blocks hit:     164375
+Total evictions:      0
+Cache hit rate:       40.15%
+
+Per-request hit distribution:
+  0 blocks hit:        32 requests (0.1%)
+  1-5 blocks hit:   13503 requests (57.2%)
+  6-10 blocks hit:    219 requests (0.9%)
+  11+ blocks hit:    9854 requests (41.7%)
+
+Per-node statistics:
+  Node 0: reqs= 2920  hits= 20515  misses= 29803  evictions=     0  hit_rate=40.77%
+  Node 1: reqs= 2999  hits= 20647  misses= 30692  evictions=     0  hit_rate=40.22%
+  Node 2: reqs= 3093  hits= 21967  misses= 35205  evictions=     0  hit_rate=38.42%
+  Node 3: reqs= 2874  hits= 19916  misses= 28231  evictions=     0  hit_rate=41.36%
+  Node 4: reqs= 2883  hits= 19105  misses= 28510  evictions=     0  hit_rate=40.12%
+  Node 5: reqs= 2870  hits= 20635  misses= 30519  evictions=     0  hit_rate=40.34%
+  Node 6: reqs= 3043  hits= 21149  misses= 33715  evictions=     0  hit_rate=38.55%
+  Node 7: reqs= 2926  hits= 20441  misses= 28306  evictions=     0  hit_rate=41.93%
+
+
+
+============================================================
+$ /home/wt/conda/miniconda3/envs/llm/bin/python3 -m flux_router --data /home/wt/flux_router/data/trace.jsonl --nodes 8 --capacity 64000 --selector random --evictor lru
+=== Flux Router Simulation Results ===
+Data:                 /home/wt/flux_router/data/trace.jsonl
+Requests:             23608
+Nodes:                8 (capacity: 64000 blocks each)
+Selector:             random
+Evictor:              lru
+Total blocks needed:  409356
+Total blocks hit:     164375
+Total evictions:      0
+Cache hit rate:       40.15%
+
+Per-request hit distribution:
+  0 blocks hit:        32 requests (0.1%)
+  1-5 blocks hit:   13503 requests (57.2%)
+  6-10 blocks hit:    219 requests (0.9%)
+  11+ blocks hit:    9854 requests (41.7%)
+
+Per-node statistics:
+  Node 0: reqs= 2920  hits= 20515  misses= 29803  evictions=     0  hit_rate=40.77%
+  Node 1: reqs= 2999  hits= 20647  misses= 30692  evictions=     0  hit_rate=40.22%
+  Node 2: reqs= 3093  hits= 21967  misses= 35205  evictions=     0  hit_rate=38.42%
+  Node 3: reqs= 2874  hits= 19916  misses= 28231  evictions=     0  hit_rate=41.36%
+  Node 4: reqs= 2883  hits= 19105  misses= 28510  evictions=     0  hit_rate=40.12%
+  Node 5: reqs= 2870  hits= 20635  misses= 30519  evictions=     0  hit_rate=40.34%
+  Node 6: reqs= 3043  hits= 21149  misses= 33715  evictions=     0  hit_rate=38.55%
+  Node 7: reqs= 2926  hits= 20441  misses= 28306  evictions=     0  hit_rate=41.93%
+
+
+
+============================================================
+$ /home/wt/conda/miniconda3/envs/llm/bin/python3 -m flux_router --data /home/wt/flux_router/data/trace.jsonl --nodes 8 --capacity 64000 --selector cache_aware --evictor fifo
+=== Flux Router Simulation Results ===
+Data:                 /home/wt/flux_router/data/trace.jsonl
+Requests:             23608
+Nodes:                8 (capacity: 64000 blocks each)
+Selector:             cache_aware
+Evictor:              fifo
+Total blocks needed:  409356
+Total blocks hit:     215666
+Total evictions:      94
+Cache hit rate:       52.68%
+
+Per-request hit distribution:
+  0 blocks hit:         6 requests (0.0%)
+  1-5 blocks hit:   11517 requests (48.8%)
+  6-10 blocks hit:    836 requests (3.5%)
+  11+ blocks hit:   11249 requests (47.6%)
+
+Per-node statistics:
+  Node 0: reqs= 3751  hits= 33823  misses= 64018  evictions=    18  hit_rate=34.57%
+  Node 1: reqs= 9203  hits=110965  misses= 16142  evictions=     0  hit_rate=87.30%
+  Node 2: reqs= 3449  hits= 17356  misses=  7185  evictions=     0  hit_rate=70.72%
+  Node 3: reqs=   18  hits=    58  misses=    27  evictions=     0  hit_rate=68.24%
+  Node 4: reqs= 4332  hits= 32659  misses= 64076  evictions=    76  hit_rate=33.76%
+  Node 5: reqs= 2855  hits= 20805  misses= 42242  evictions=     0  hit_rate=33.00%
+  Node 6: reqs=    0  hits=     0  misses=     0  evictions=     0  hit_rate=0.00%
+  Node 7: reqs=    0  hits=     0  misses=     0  evictions=     0  hit_rate=0.00%
+
+
+
+============================================================
+$ /home/wt/conda/miniconda3/envs/llm/bin/python3 -m flux_router --data /home/wt/flux_router/data/trace.jsonl --nodes 8 --capacity 64000 --selector cache_aware --evictor lru
+=== Flux Router Simulation Results ===
+Data:                 /home/wt/flux_router/data/trace.jsonl
+Requests:             23608
+Nodes:                8 (capacity: 64000 blocks each)
+Selector:             cache_aware
+Evictor:              lru
+Total blocks needed:  409356
+Total blocks hit:     225915
+Total evictions:      96087
+Cache hit rate:       55.19%
+
+Per-request hit distribution:
+  0 blocks hit:         4 requests (0.0%)
+  1-5 blocks hit:   11171 requests (47.3%)
+  6-10 blocks hit:    916 requests (3.9%)
+  11+ blocks hit:   11517 requests (48.8%)
+
+Per-node statistics:
+  Node 0: reqs=10938  hits= 97536  misses=160087  evictions= 96087  hit_rate=37.86%
+  Node 1: reqs= 9203  hits=110965  misses= 16142  evictions=     0  hit_rate=87.30%
+  Node 2: reqs= 3449  hits= 17356  misses=  7185  evictions=     0  hit_rate=70.72%
+  Node 3: reqs=   18  hits=    58  misses=    27  evictions=     0  hit_rate=68.24%
+  Node 4: reqs=    0  hits=     0  misses=     0  evictions=     0  hit_rate=0.00%
+  Node 5: reqs=    0  hits=     0  misses=     0  evictions=     0  hit_rate=0.00%
+  Node 6: reqs=    0  hits=     0  misses=     0  evictions=     0  hit_rate=0.00%
+  Node 7: reqs=    0  hits=     0  misses=     0  evictions=     0  hit_rate=0.00%
+
+
+
+============================================================
+$ /home/wt/conda/miniconda3/envs/llm/bin/python3 -m flux_router --data /home/wt/flux_router/data/trace.jsonl --nodes 8 --capacity 128000 --selector random --evictor fifo
+=== Flux Router Simulation Results ===
+Data:                 /home/wt/flux_router/data/trace.jsonl
+Requests:             23608
+Nodes:                8 (capacity: 128000 blocks each)
+Selector:             random
+Evictor:              fifo
+Total blocks needed:  409356
+Total blocks hit:     164375
+Total evictions:      0
+Cache hit rate:       40.15%
+
+Per-request hit distribution:
+  0 blocks hit:        32 requests (0.1%)
+  1-5 blocks hit:   13503 requests (57.2%)
+  6-10 blocks hit:    219 requests (0.9%)
+  11+ blocks hit:    9854 requests (41.7%)
+
+Per-node statistics:
+  Node 0: reqs= 2920  hits= 20515  misses= 29803  evictions=     0  hit_rate=40.77%
+  Node 1: reqs= 2999  hits= 20647  misses= 30692  evictions=     0  hit_rate=40.22%
+  Node 2: reqs= 3093  hits= 21967  misses= 35205  evictions=     0  hit_rate=38.42%
+  Node 3: reqs= 2874  hits= 19916  misses= 28231  evictions=     0  hit_rate=41.36%
+  Node 4: reqs= 2883  hits= 19105  misses= 28510  evictions=     0  hit_rate=40.12%
+  Node 5: reqs= 2870  hits= 20635  misses= 30519  evictions=     0  hit_rate=40.34%
+  Node 6: reqs= 3043  hits= 21149  misses= 33715  evictions=     0  hit_rate=38.55%
+  Node 7: reqs= 2926  hits= 20441  misses= 28306  evictions=     0  hit_rate=41.93%
+
+
+
+============================================================
+$ /home/wt/conda/miniconda3/envs/llm/bin/python3 -m flux_router --data /home/wt/flux_router/data/trace.jsonl --nodes 8 --capacity 128000 --selector random --evictor lru
+=== Flux Router Simulation Results ===
+Data:                 /home/wt/flux_router/data/trace.jsonl
+Requests:             23608
+Nodes:                8 (capacity: 128000 blocks each)
+Selector:             random
+Evictor:              lru
+Total blocks needed:  409356
+Total blocks hit:     164375
+Total evictions:      0
+Cache hit rate:       40.15%
+
+Per-request hit distribution:
+  0 blocks hit:        32 requests (0.1%)
+  1-5 blocks hit:   13503 requests (57.2%)
+  6-10 blocks hit:    219 requests (0.9%)
+  11+ blocks hit:    9854 requests (41.7%)
+
+Per-node statistics:
+  Node 0: reqs= 2920  hits= 20515  misses= 29803  evictions=     0  hit_rate=40.77%
+  Node 1: reqs= 2999  hits= 20647  misses= 30692  evictions=     0  hit_rate=40.22%
+  Node 2: reqs= 3093  hits= 21967  misses= 35205  evictions=     0  hit_rate=38.42%
+  Node 3: reqs= 2874  hits= 19916  misses= 28231  evictions=     0  hit_rate=41.36%
+  Node 4: reqs= 2883  hits= 19105  misses= 28510  evictions=     0  hit_rate=40.12%
+  Node 5: reqs= 2870  hits= 20635  misses= 30519  evictions=     0  hit_rate=40.34%
+  Node 6: reqs= 3043  hits= 21149  misses= 33715  evictions=     0  hit_rate=38.55%
+  Node 7: reqs= 2926  hits= 20441  misses= 28306  evictions=     0  hit_rate=41.93%
+
+
+
+============================================================
+$ /home/wt/conda/miniconda3/envs/llm/bin/python3 -m flux_router --data /home/wt/flux_router/data/trace.jsonl --nodes 8 --capacity 128000 --selector cache_aware --evictor fifo
+=== Flux Router Simulation Results ===
+Data:                 /home/wt/flux_router/data/trace.jsonl
+Requests:             23608
+Nodes:                8 (capacity: 128000 blocks each)
+Selector:             cache_aware
+Evictor:              fifo
+Total blocks needed:  409356
+Total blocks hit:     220783
+Total evictions:      221
+Cache hit rate:       53.93%
+
+Per-request hit distribution:
+  0 blocks hit:         5 requests (0.0%)
+  1-5 blocks hit:   11348 requests (48.1%)
+  6-10 blocks hit:    867 requests (3.7%)
+  11+ blocks hit:   11388 requests (48.2%)
+
+Per-node statistics:
+  Node 0: reqs= 8487  hits= 74997  misses=128221  evictions=   221  hit_rate=36.90%
+  Node 1: reqs= 9203  hits=110965  misses= 16142  evictions=     0  hit_rate=87.30%
+  Node 2: reqs= 3449  hits= 17356  misses=  7185  evictions=     0  hit_rate=70.72%
+  Node 3: reqs=   18  hits=    58  misses=    27  evictions=     0  hit_rate=68.24%
+  Node 4: reqs= 2451  hits= 17407  misses= 36998  evictions=     0  hit_rate=32.00%
+  Node 5: reqs=    0  hits=     0  misses=     0  evictions=     0  hit_rate=0.00%
+  Node 6: reqs=    0  hits=     0  misses=     0  evictions=     0  hit_rate=0.00%
+  Node 7: reqs=    0  hits=     0  misses=     0  evictions=     0  hit_rate=0.00%
+
+
+
+============================================================
+$ /home/wt/conda/miniconda3/envs/llm/bin/python3 -m flux_router --data /home/wt/flux_router/data/trace.jsonl --nodes 8 --capacity 128000 --selector cache_aware --evictor lru
+=== Flux Router Simulation Results ===
+Data:                 /home/wt/flux_router/data/trace.jsonl
+Requests:             23608
+Nodes:                8 (capacity: 128000 blocks each)
+Selector:             cache_aware
+Evictor:              lru
+Total blocks needed:  409356
+Total blocks hit:     226151
+Total evictions:      31851
+Cache hit rate:       55.25%
+
+Per-request hit distribution:
+  0 blocks hit:         4 requests (0.0%)
+  1-5 blocks hit:   11165 requests (47.3%)
+  6-10 blocks hit:    916 requests (3.9%)
+  11+ blocks hit:   11523 requests (48.8%)
+
+Per-node statistics:
+  Node 0: reqs=10938  hits= 97772  misses=159851  evictions= 31851  hit_rate=37.95%
+  Node 1: reqs= 9203  hits=110965  misses= 16142  evictions=     0  hit_rate=87.30%
+  Node 2: reqs= 3449  hits= 17356  misses=  7185  evictions=     0  hit_rate=70.72%
+  Node 3: reqs=   18  hits=    58  misses=    27  evictions=     0  hit_rate=68.24%
+  Node 4: reqs=    0  hits=     0  misses=     0  evictions=     0  hit_rate=0.00%
+  Node 5: reqs=    0  hits=     0  misses=     0  evictions=     0  hit_rate=0.00%
+  Node 6: reqs=    0  hits=     0  misses=     0  evictions=     0  hit_rate=0.00%
+  Node 7: reqs=    0  hits=     0  misses=     0  evictions=     0  hit_rate=0.00%
+
+
+
+============================================================
+$ /home/wt/conda/miniconda3/envs/llm/bin/python3 -m flux_router --data /home/wt/flux_router/data/trace.jsonl --nodes 8 --capacity 250000 --selector random --evictor fifo
+=== Flux Router Simulation Results ===
+Data:                 /home/wt/flux_router/data/trace.jsonl
+Requests:             23608
+Nodes:                8 (capacity: 250000 blocks each)
+Selector:             random
+Evictor:              fifo
+Total blocks needed:  409356
+Total blocks hit:     164375
+Total evictions:      0
+Cache hit rate:       40.15%
+
+Per-request hit distribution:
+  0 blocks hit:        32 requests (0.1%)
+  1-5 blocks hit:   13503 requests (57.2%)
+  6-10 blocks hit:    219 requests (0.9%)
+  11+ blocks hit:    9854 requests (41.7%)
+
+Per-node statistics:
+  Node 0: reqs= 2920  hits= 20515  misses= 29803  evictions=     0  hit_rate=40.77%
+  Node 1: reqs= 2999  hits= 20647  misses= 30692  evictions=     0  hit_rate=40.22%
+  Node 2: reqs= 3093  hits= 21967  misses= 35205  evictions=     0  hit_rate=38.42%
+  Node 3: reqs= 2874  hits= 19916  misses= 28231  evictions=     0  hit_rate=41.36%
+  Node 4: reqs= 2883  hits= 19105  misses= 28510  evictions=     0  hit_rate=40.12%
+  Node 5: reqs= 2870  hits= 20635  misses= 30519  evictions=     0  hit_rate=40.34%
+  Node 6: reqs= 3043  hits= 21149  misses= 33715  evictions=     0  hit_rate=38.55%
+  Node 7: reqs= 2926  hits= 20441  misses= 28306  evictions=     0  hit_rate=41.93%
+
+
+
+============================================================
+$ /home/wt/conda/miniconda3/envs/llm/bin/python3 -m flux_router --data /home/wt/flux_router/data/trace.jsonl --nodes 8 --capacity 250000 --selector random --evictor lru
+=== Flux Router Simulation Results ===
+Data:                 /home/wt/flux_router/data/trace.jsonl
+Requests:             23608
+Nodes:                8 (capacity: 250000 blocks each)
+Selector:             random
+Evictor:              lru
+Total blocks needed:  409356
+Total blocks hit:     164375
+Total evictions:      0
+Cache hit rate:       40.15%
+
+Per-request hit distribution:
+  0 blocks hit:        32 requests (0.1%)
+  1-5 blocks hit:   13503 requests (57.2%)
+  6-10 blocks hit:    219 requests (0.9%)
+  11+ blocks hit:    9854 requests (41.7%)
+
+Per-node statistics:
+  Node 0: reqs= 2920  hits= 20515  misses= 29803  evictions=     0  hit_rate=40.77%
+  Node 1: reqs= 2999  hits= 20647  misses= 30692  evictions=     0  hit_rate=40.22%
+  Node 2: reqs= 3093  hits= 21967  misses= 35205  evictions=     0  hit_rate=38.42%
+  Node 3: reqs= 2874  hits= 19916  misses= 28231  evictions=     0  hit_rate=41.36%
+  Node 4: reqs= 2883  hits= 19105  misses= 28510  evictions=     0  hit_rate=40.12%
+  Node 5: reqs= 2870  hits= 20635  misses= 30519  evictions=     0  hit_rate=40.34%
+  Node 6: reqs= 3043  hits= 21149  misses= 33715  evictions=     0  hit_rate=38.55%
+  Node 7: reqs= 2926  hits= 20441  misses= 28306  evictions=     0  hit_rate=41.93%
+
+
+
+============================================================
+$ /home/wt/conda/miniconda3/envs/llm/bin/python3 -m flux_router --data /home/wt/flux_router/data/trace.jsonl --nodes 8 --capacity 250000 --selector cache_aware --evictor fifo
+=== Flux Router Simulation Results ===
+Data:                 /home/wt/flux_router/data/trace.jsonl
+Requests:             23608
+Nodes:                8 (capacity: 250000 blocks each)
+Selector:             cache_aware
+Evictor:              fifo
+Total blocks needed:  409356
+Total blocks hit:     226190
+Total evictions:      0
+Cache hit rate:       55.26%
+
+Per-request hit distribution:
+  0 blocks hit:         4 requests (0.0%)
+  1-5 blocks hit:   11164 requests (47.3%)
+  6-10 blocks hit:    916 requests (3.9%)
+  11+ blocks hit:   11524 requests (48.8%)
+
+Per-node statistics:
+  Node 0: reqs=10938  hits= 97811  misses=159812  evictions=     0  hit_rate=37.97%
+  Node 1: reqs= 9203  hits=110965  misses= 16142  evictions=     0  hit_rate=87.30%
+  Node 2: reqs= 3449  hits= 17356  misses=  7185  evictions=     0  hit_rate=70.72%
+  Node 3: reqs=   18  hits=    58  misses=    27  evictions=     0  hit_rate=68.24%
+  Node 4: reqs=    0  hits=     0  misses=     0  evictions=     0  hit_rate=0.00%
+  Node 5: reqs=    0  hits=     0  misses=     0  evictions=     0  hit_rate=0.00%
+  Node 6: reqs=    0  hits=     0  misses=     0  evictions=     0  hit_rate=0.00%
+  Node 7: reqs=    0  hits=     0  misses=     0  evictions=     0  hit_rate=0.00%
+
+
+
+============================================================
+$ /home/wt/conda/miniconda3/envs/llm/bin/python3 -m flux_router --data /home/wt/flux_router/data/trace.jsonl --nodes 8 --capacity 250000 --selector cache_aware --evictor lru
+=== Flux Router Simulation Results ===
+Data:                 /home/wt/flux_router/data/trace.jsonl
+Requests:             23608
+Nodes:                8 (capacity: 250000 blocks each)
+Selector:             cache_aware
+Evictor:              lru
+Total blocks needed:  409356
+Total blocks hit:     226190
+Total evictions:      0
+Cache hit rate:       55.26%
+
+Per-request hit distribution:
+  0 blocks hit:         4 requests (0.0%)
+  1-5 blocks hit:   11164 requests (47.3%)
+  6-10 blocks hit:    916 requests (3.9%)
+  11+ blocks hit:   11524 requests (48.8%)
+
+Per-node statistics:
+  Node 0: reqs=10938  hits= 97811  misses=159812  evictions=     0  hit_rate=37.97%
+  Node 1: reqs= 9203  hits=110965  misses= 16142  evictions=     0  hit_rate=87.30%
+  Node 2: reqs= 3449  hits= 17356  misses=  7185  evictions=     0  hit_rate=70.72%
+  Node 3: reqs=   18  hits=    58  misses=    27  evictions=     0  hit_rate=68.24%
+  Node 4: reqs=    0  hits=     0  misses=     0  evictions=     0  hit_rate=0.00%
+  Node 5: reqs=    0  hits=     0  misses=     0  evictions=     0  hit_rate=0.00%
+  Node 6: reqs=    0  hits=     0  misses=     0  evictions=     0  hit_rate=0.00%
+  Node 7: reqs=    0  hits=     0  misses=     0  evictions=     0  hit_rate=0.00%
+
+
