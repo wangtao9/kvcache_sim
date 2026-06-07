@@ -1,4 +1,4 @@
-from flux_router.model import BlockEntry, PrefillNode, Request
+from flux_router.model import PrefillNode, Request
 
 
 def make_request(timestamp: int = 0, input_length: int = 1000,
@@ -14,5 +14,5 @@ def make_node(node_id: int = 0, capacity: int = 100,
     node = PrefillNode(node_id=node_id, capacity=capacity)
     if cached_ids:
         for hid in cached_ids:
-            node.cache[hid] = BlockEntry(insert_time=now, last_access_time=now)
+            node.cache[hid] = now	# timestamp 
     return node

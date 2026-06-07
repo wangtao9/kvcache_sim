@@ -2,8 +2,9 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field
 
+from flux_router import LRUEvictor
 from flux_router.evictor import BlockEvictor
-from flux_router.model import BlockEntry, PrefillNode, Request
+from flux_router.model import PrefillNode, Request
 from flux_router.selector import PrefillSelector, prefix_match_len
 
 
@@ -35,13 +36,11 @@ class PrefillSimulator:
 
         for hid in request.hash_ids:
             if hid in node.cache:
-                node.cache[hid].last_access_time = now
+                self._evictor.on_access(node, hid)
             else:
                 if node.used >= node.capacity:
-                    evict_ids = self._evictor.evict(node, need=1, now=now)
-                    for eid in evict_ids:
-                        del node.cache[eid]
-                node.cache[hid] = BlockEntry(insert_time=now, last_access_time=now)
+                    self._evictor.evict(node, need=1)
+            node.cache[hid] = now
 
         return hit_len
 
