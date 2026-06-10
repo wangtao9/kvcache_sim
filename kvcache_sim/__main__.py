@@ -4,10 +4,10 @@ import argparse
 import json
 from pathlib import Path
 
-from flux_router.evictor import FIFOEvictor, LRUEvictor
-from flux_router.model import PrefillNode, Request
-from flux_router.selector import CacheAwareSelector, RandomSelector
-from flux_router.simulator import PrefillSimulator
+from kvcache_sim.evictor import FIFOEvictor, LRUEvictor
+from kvcache_sim.model import PrefillNode, Request
+from kvcache_sim.selector import CacheAwareSelector, RandomSelector
+from kvcache_sim.simulator import PrefillSimulator
 
 
 def load_requests(path: str) -> list[Request]:
@@ -29,7 +29,7 @@ def load_requests(path: str) -> list[Request]:
 
 def print_result(result, selector_name: str, evictor_name: str,
                  num_nodes: int, capacity: int, data_path: str) -> None:
-    print("=== Flux Router Simulation Results ===")
+    print("=== KV-Cache Simulator Results ===")
     print(f"Data:                 {data_path}")
     print(f"Requests:             {result.total_requests}")
     print(f"Nodes:                {num_nodes} (capacity: {capacity} blocks each)")
@@ -63,7 +63,7 @@ def print_result(result, selector_name: str, evictor_name: str,
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Flux Router: prefill routing simulation")
+    parser = argparse.ArgumentParser(description="KV-Cache Simulator: prefill routing simulation")
     parser.add_argument("--data", type=str, default="data/trace.jsonl", help="Path to JSONL trace file")
     parser.add_argument("--nodes", type=int, default=8, help="Number of prefill nodes (default: 8)")
     parser.add_argument("--capacity", type=int, default=10000, help="Cache capacity per node in blocks (default: 10000)")

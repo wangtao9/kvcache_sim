@@ -13,7 +13,7 @@ def _make_jsonl(path: Path, records: list[dict]) -> None:
 
 def _run_cli(args: list[str]) -> subprocess.CompletedProcess:
     return subprocess.run(
-        [sys.executable, "-m", "flux_router"] + args,
+        [sys.executable, "-m", "kvcache_sim"] + args,
         capture_output=True,
         text=True,
         cwd=Path(__file__).resolve().parent.parent,
@@ -36,7 +36,7 @@ def test_cli_basic_run():
                            "--selector", "cache_aware", "--evictor", "fifo"])
         assert result.returncode == 0
         assert "Cache hit rate" in result.stdout
-        assert "Requests:    2" in result.stdout
+        assert "Requests:             2" in result.stdout
     finally:
         Path(path).unlink()
 

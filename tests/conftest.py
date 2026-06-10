@@ -1,4 +1,4 @@
-from flux_router.model import PrefillNode, Request
+from kvcache_sim.model import PrefillNode, Request
 
 
 def make_request(timestamp: int = 0, input_length: int = 1000,

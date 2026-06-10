@@ -2,9 +2,9 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field
 
-from flux_router.evictor import BlockEvictor
-from flux_router.model import PrefillNode, Request
-from flux_router.selector import PrefillSelector, prefix_match_len
+from kvcache_sim.evictor import BlockEvictor
+from kvcache_sim.model import PrefillNode, Request
+from kvcache_sim.selector import PrefillSelector, prefix_match_len
 
 
 @dataclass

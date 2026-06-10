@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from typing import Protocol
 
-from flux_router.model import PrefillNode
+from kvcache_sim.model import PrefillNode
 
 
 class BlockEvictor(Protocol):

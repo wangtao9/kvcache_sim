@@ -1,7 +1,7 @@
-from flux_router.model import PrefillNode, Request
-from flux_router.evictor import FIFOEvictor, LRUEvictor
-from flux_router.selector import CacheAwareSelector, RandomSelector
-from flux_router.simulator import PrefillSimulator
+from kvcache_sim.model import PrefillNode, Request
+from kvcache_sim.evictor import FIFOEvictor, LRUEvictor
+from kvcache_sim.selector import CacheAwareSelector, RandomSelector
+from kvcache_sim.simulator import PrefillSimulator
 
 
 class TestProcessRequest:
@@ -9,7 +9,7 @@ class TestProcessRequest:
         node = PrefillNode(node_id=0, capacity=10)
         sim = PrefillSimulator([node], RandomSelector(seed=0), FIFOEvictor())
         req = Request(timestamp=0, input_length=1000, output_length=100, hash_ids=[1, 2, 3])
-        hit = sim.process_request(req, now=0)
+        node_id, hit, miss, evict = sim.process_request(req, now=0)
         assert hit == 0
         assert node.used == 3
 
@@ -20,7 +20,7 @@ class TestProcessRequest:
         node.cache[3] = 0
         sim = PrefillSimulator([node], CacheAwareSelector(), FIFOEvictor())
         req = Request(timestamp=0, input_length=1000, output_length=100, hash_ids=[1, 2, 3])
-        hit = sim.process_request(req, now=10)
+        node_id, hit, miss, evict = sim.process_request(req, now=10)
         assert hit == 3
         assert node.used == 3
 
@@ -30,7 +30,7 @@ class TestProcessRequest:
         node.cache[2] = 0
         sim = PrefillSimulator([node], CacheAwareSelector(), FIFOEvictor())
         req = Request(timestamp=0, input_length=1000, output_length=100, hash_ids=[1, 2, 3, 4])
-        hit = sim.process_request(req, now=10)
+        node_id, hit, miss, evict = sim.process_request(req, now=10)
         assert hit == 2
         assert node.used == 4
         assert 3 in node.cache
@@ -43,7 +43,7 @@ class TestProcessRequest:
         node.cache[12] = 0
         sim = PrefillSimulator([node], CacheAwareSelector(), FIFOEvictor())
         req = Request(timestamp=0, input_length=1000, output_length=100, hash_ids=[1, 2])
-        hit = sim.process_request(req, now=10)
+        node_id, hit, miss, evict = sim.process_request(req, now=10)
         assert hit == 0
         assert node.used == 3
         assert 10 not in node.cache
@@ -57,7 +57,7 @@ class TestProcessRequest:
         node.cache[2] = 2
         sim = PrefillSimulator([node], CacheAwareSelector(), LRUEvictor())
         req = Request(timestamp=0, input_length=1000, output_length=100, hash_ids=[1, 2, 3])
-        hit = sim.process_request(req, now=10)
+        node_id, hit, miss, evict = sim.process_request(req, now=10)
         assert hit == 2
         assert 10 not in node.cache  # evicted: oldest access_time, not part of request
         assert 3 in node.cache
@@ -73,7 +73,7 @@ class TestProcessRequest:
         node_b.cache[3] = 0
         sim = PrefillSimulator([node_a, node_b], CacheAwareSelector(), FIFOEvictor())
         req = Request(timestamp=0, input_length=1000, output_length=100, hash_ids=[1, 2, 3, 4])
-        hit = sim.process_request(req, now=10)
+        node_id, hit, miss, evict = sim.process_request(req, now=10)
         assert hit == 3
         assert 4 in node_b.cache
         assert 4 not in node_a.cache

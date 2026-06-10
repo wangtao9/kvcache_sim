@@ -3,7 +3,7 @@ from __future__ import annotations
 import random
 from typing import Protocol
 
-from flux_router.model import PrefillNode, Request
+from kvcache_sim.model import PrefillNode, Request
 
 
 class PrefillSelector(Protocol):

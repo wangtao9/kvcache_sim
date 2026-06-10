@@ -1,5 +1,5 @@
-from flux_router.model import PrefillNode
-from flux_router.evictor import FIFOEvictor, LRUEvictor
+from kvcache_sim.model import PrefillNode
+from kvcache_sim.evictor import FIFOEvictor, LRUEvictor
 
 
 def make_filled_node(capacity: int = 5, now: int = 0) -> PrefillNode:

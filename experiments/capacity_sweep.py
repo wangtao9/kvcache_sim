@@ -12,7 +12,7 @@ COMBOS = [("random", "fifo"), ("random", "lru"), ("cache_aware", "fifo"), ("cach
 LABELS = ["ra+fifo", "ra+lru", "ca+fifo", "ca+lru"]
 
 def run(cap, sel, ev, log):
-    cmd = [sys.executable, "-m", "flux_router", "--data", TRACE,
+    cmd = [sys.executable, "-m", "kvcache_sim", "--data", TRACE,
            "--nodes", str(NODES), "--capacity", str(cap), "--selector", sel, "--evictor", ev]
     r = subprocess.run(cmd, capture_output=True, text=True)
     log.write(f"\n{'='*60}\n$ {' '.join(cmd)}\n{r.stdout}\n{r.stderr}\n")
