@@ -51,15 +51,17 @@ class PrefillSimulator:
         miss_count = 0
         eviction_count = 0
 
-        for hid in request.hash_ids:
-            if hid in node.cache:
-                self._evictor.on_access(node, hid)
-            else:
-                if node.used >= node.capacity:
-                    evicted = self._evictor.evict(node, need=1)
-                    eviction_count += len(evicted)
-                node.cache[hid] = now
-                miss_count += 1
+        # 前缀命中部分：触发on_access，不修改cache
+        for hid in request.hash_ids[:hit_len]:
+            self._evictor.on_access(node, hid)
+        # 改进1: 断点之后：全部视为miss，加入cache (todo: think twice, 断点后可能有散命中)
+        # 改进2: 驱逐时需要保护已经匹配的前缀块！
+        for hid in request.hash_ids[hit_len:]:
+            if node.used >= node.capacity:
+                evicted = self._evictor.evict(node, need=1, exclude=set(request.hash_ids[:hit_len]))
+                eviction_count += len(evicted)
+            node.cache[hid] = now
+            miss_count += 1
 
         return node_id, hit_len, miss_count, eviction_count
 

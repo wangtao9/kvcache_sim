@@ -89,3 +89,9 @@ python -m pytest tests/ -v
 > *   **RA**: Random Assignment (随机路由)
 > *   **CA**: Cache-Aware (感知缓存路由)
 > *   **FIFO/LRU**: 驱逐策略
+
+data/trace.jsonl统计：
+总请求数: 23,608
+总Block引用数: 409,356
+Distinct Block 数: 183,166
+仅被引用 1 次的 Block: 143,735
